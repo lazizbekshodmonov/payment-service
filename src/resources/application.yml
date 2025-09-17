@@ -20,7 +20,7 @@ security:
 
 providers:
   plum:
-    active: false
+    active: true
     production: false
     host: https://checkout.paycom.uz
     merchant_id: 1
