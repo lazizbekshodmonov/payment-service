@@ -5,6 +5,7 @@ import { UserModule } from './modules/user/user.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { loadYamlConfig } from './common/config/load-yaml.config';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { loadYamlConfig } from './common/config/load-yaml.config';
     PlumModule,
     TransactionModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

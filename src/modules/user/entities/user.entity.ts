@@ -26,14 +26,6 @@ export class User extends BaseEntity {
   @Column({ name: 'api_key', type: 'varchar', length: 255, nullable: true })
   apiKey: string | null;
 
-  @Column({
-    name: 'token_secret',
-    type: 'varchar',
-    length: 255,
-    nullable: true,
-  })
-  tokenSecret: string | null;
-
   @Column({ name: 'is_active', type: 'boolean', default: false })
   isActive: boolean;
 }
