@@ -1,11 +1,11 @@
 import { Entity, Column, Unique, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { PaymentProvider, TransactionStatus } from '../transaction.enum';
-import { User } from '../../user/entities/user.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 
 @Entity('transactions')
 @Unique(['provider', 'providerTransactionId'])
-export class Transaction extends BaseEntity {
+export class TransactionEntity extends BaseEntity {
   @Column({
     name: 'provider',
     type: 'enum',
@@ -21,9 +21,9 @@ export class Transaction extends BaseEntity {
   orderId: string | null;
 
   @Index()
-  @ManyToOne(() => User, { nullable: true })
+  @ManyToOne(() => UserEntity, { nullable: true })
   @JoinColumn({ name: 'user_id' })
-  user: User | null;
+  user: UserEntity | null;
 
   @Column({ name: 'amount', type: 'decimal', precision: 14, scale: 2 })
   amount: number;

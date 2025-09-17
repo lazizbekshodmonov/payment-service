@@ -5,7 +5,7 @@ import { UserType } from '../user.enum';
 @Entity('users')
 @Unique(['username'])
 @Unique(['apiKey'])
-export class User extends BaseEntity {
+export class UserEntity extends BaseEntity {
   @Column({ name: 'name', type: 'varchar', length: 150 })
   name: string;
 

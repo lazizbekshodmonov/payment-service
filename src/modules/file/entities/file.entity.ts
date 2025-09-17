@@ -3,7 +3,7 @@ import { BaseEntity } from '../../../common/entities/base.entity';
 
 @Entity('file')
 @Unique(['hashId'])
-export class File extends BaseEntity {
+export class FileEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   filename: string;
 

@@ -7,7 +7,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from './user.repository';
 import { UserMapper } from './user.mapper';
 import { ConfigService } from '@nestjs/config';
-import { async } from 'rxjs';
 
 @Injectable()
 export class UserService {

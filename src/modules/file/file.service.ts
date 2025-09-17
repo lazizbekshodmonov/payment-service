@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, Streamab
 import { join } from 'path';
 import * as fs from 'node:fs';
 import { ConfigService } from '@nestjs/config';
-import { File } from './entities/file.entity';
+import { FileEntity } from './entities/file.entity';
 import { FileRepository } from './file.repository';
 import { FileResponseDto } from './dto/file.dto';
 
@@ -72,7 +72,7 @@ export class FileService {
       throw new InternalServerErrorException();
     }
   }
-  async findByHashId(hashId: string): Promise<File> {
+  async findByHashId(hashId: string): Promise<FileEntity> {
     try {
       const file = await this.fileRepository.findByHashId(hashId);
       if (!file) {
