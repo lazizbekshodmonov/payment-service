@@ -17,4 +17,3 @@ database:
 
 security:
   jwtSecret: {JWT_SECRET}
-  apiKeyLength: {API_KEY_LENGTH}
