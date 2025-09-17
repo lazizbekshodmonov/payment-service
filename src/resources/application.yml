@@ -16,4 +16,11 @@ database:
     name: {POSTGRES_DB}
 
 security:
-  jwtSecret: {JWT_SECRET}
+  jwt_secret: {JWT_SECRET}
+
+providers:
+  plum:
+    active: false
+    production: false
+    host: https://checkout.paycom.uz
+    merchant_id: 1

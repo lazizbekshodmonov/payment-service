@@ -26,7 +26,7 @@ export class UserService {
     const apiKey = uuidv4();
     const tokenSecret = randomBytes(32).toString('hex');
 
-    const jwtSecret = this.configService.get<string>('security.jwtSecret');
+    const jwtSecret = this.configService.get<string>('security.jwt_secret');
     if (!jwtSecret) throw new BadRequestException();
     const passwordHash = await bcrypt.hash(jwtSecret, 10);
 
