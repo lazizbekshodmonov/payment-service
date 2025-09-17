@@ -1,0 +1,13 @@
+server:
+  port: 3000
+
+database:
+  host: {POSTGRES_HOST}
+  port: {POSTGRES_PORT}
+  username: {POSTGRES_USER}
+  password: {POSTGRES_PASSWORD}
+  name: {POSTGRES_DB}
+
+security:
+  jwtSecret: {JWT_SECRET}
+  apiKeyLength: {API_KEY_LENGTH}
