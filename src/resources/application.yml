@@ -26,7 +26,6 @@ security:
 
 providers:
   plum:
-    active: true
-    production: false
-    host: https://checkout.paycom.uz
-    merchant_id: 1
+    host: https://pay.myuzcard.uz
+#  payme:
+#    host: https://checkout.test.paycom.uz/api

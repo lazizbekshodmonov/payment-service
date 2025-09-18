@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { PlumController } from './controllers/plum.controller';
-import { PlumService } from './services/plum.service';
+import { PlumPaymentModule } from './plum-payment/plum-payment.module';
 
 @Module({
-  controllers: [PlumController],
-  providers: [PlumService],
+  imports: [PlumPaymentModule],
+  controllers: [],
+  providers: [],
 })
 export class PaymentModule {}

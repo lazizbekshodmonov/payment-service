@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { CreatePlumDto } from '../dtos/create-plum.dto';
-import { PlumService } from '../services/plum.service';
+import { PlumPaymentService } from './plum-payment.service';
 import { ApiKeyGuard } from '../../auth/guards/api-key.guard';
 
 @Controller('plum')
 export class PlumController {
-  constructor(private readonly plumService: PlumService) {}
+  constructor(private readonly plumService: PlumPaymentService) {}
 
   @UseGuards(ApiKeyGuard)
   @Post('pay')
