@@ -21,9 +21,9 @@ export class TransactionEntity extends BaseEntity {
   orderId: string | null;
 
   @Index()
-  @ManyToOne(() => UserEntity, { nullable: true })
+  @ManyToOne(() => UserEntity)
   @JoinColumn({ name: 'user_id' })
-  user: UserEntity | null;
+  user: UserEntity;
 
   @Column({ name: 'amount', type: 'decimal', precision: 14, scale: 2 })
   amount: number;
