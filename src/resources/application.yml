@@ -1,5 +1,5 @@
 server:
-  port: 3000
+  port: 8080
 
 database:
   postgres:
@@ -9,14 +9,20 @@ database:
     password: "{POSTGRES_PASSWORD}"
     name: "{POSTGRES_DB}"
   redis:
-    host: {POSTGRES_HOST}
-    port: {POSTGRES_PORT}
-    username: {POSTGRES_USER}
-    password: {POSTGRES_PASSWORD}
-    name: {POSTGRES_DB}
+    host: "{POSTGRES_HOST}"
+    port: "{POSTGRES_PORT}"
+    username: "{POSTGRES_USER}"
+    password: "{POSTGRES_PASSWORD}"
+    name: "{POSTGRES_DB}"
 
 security:
-  jwt_secret: {JWT_SECRET}
+  jwt:
+    jwt_secret: "{JWT_SECRET}"
+    access_expires_in: 2h
+    refresh_expires_in: 1d
+  hash:
+    secret: "{HASH_SECRET}"
+
 
 providers:
   plum:

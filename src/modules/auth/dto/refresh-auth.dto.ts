@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreatePlumDto {
+export class RefreshAuthDto {
   @IsString()
   @IsNotEmpty()
-  test: string;
+  refreshToken: string;
 }

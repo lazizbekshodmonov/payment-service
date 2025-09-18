@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { loadYamlConfig } from './common/config/load-yaml.config';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
@@ -7,6 +7,9 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
 import { PlumModule } from './modules/plum/plum.module';
+import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { LoggerModule } from './common/modules/logger-module/logger.module';
+import { LogsController } from './common/controllers/logs.controller';
 
 @Module({
   imports: [
@@ -15,13 +18,18 @@ import { PlumModule } from './modules/plum/plum.module';
       load: [loadYamlConfig],
     }),
     DatabaseModule,
+    LoggerModule,
     PlumModule,
     TransactionModule,
     UserModule,
     AuthModule,
     FileModule,
   ],
-  controllers: [],
+  controllers: [LogsController],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
