@@ -4,13 +4,3 @@ export enum TransactionStatus {
   FAILED = 'FAILED',
   CANCELED = 'CANCELED',
 }
-
-export enum PaymentProvider {
-  PLUM = 'PLUM',
-  CLICK = 'CLICK',
-  PAYME = 'PAYME',
-  PAYNET = 'PAYNET',
-  STRIPE = 'STRIPE',
-  PAYPAL = 'PAYPAL',
-  OTHER = 'OTHER',
-}

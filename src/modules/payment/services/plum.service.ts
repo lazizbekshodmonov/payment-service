@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePlumDto } from './dto/create-plum.dto';
-import { UpdatePlumDto } from './dto/update-plum.dto';
+
 import { ConfigService } from '@nestjs/config';
+import { CreatePlumDto } from '../dtos/create-plum.dto';
 
 @Injectable()
 export class PlumService {
@@ -21,13 +21,5 @@ export class PlumService {
 
   findOne(id: number) {
     return `This action returns a #${id} plum`;
-  }
-
-  update(id: number, updatePlumDto: UpdatePlumDto) {
-    return `This action updates a #${id} plum`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} plum`;
   }
 }

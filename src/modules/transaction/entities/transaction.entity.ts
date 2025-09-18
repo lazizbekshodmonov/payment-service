@@ -1,7 +1,8 @@
 import { Entity, Column, Unique, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
-import { PaymentProvider, TransactionStatus } from '../transaction.enum';
+import { TransactionStatus } from '../transaction.enum';
 import { UserEntity } from '../../user/entities/user.entity';
+import { PaymentProvider } from '../../payment/payment.enum';
 
 @Entity('transactions')
 @Unique(['provider', 'providerTransactionId'])
