@@ -6,10 +6,10 @@ import { FileModule } from './modules/file/file.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
-import { PlumModule } from './modules/plum/plum.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { LoggerModule } from './common/modules/logger-module/logger.module';
 import { LogsController } from './common/controllers/logs.controller';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { LogsController } from './common/controllers/logs.controller';
     }),
     DatabaseModule,
     LoggerModule,
-    PlumModule,
+    PaymentModule,
     TransactionModule,
     UserModule,
     AuthModule,
