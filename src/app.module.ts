@@ -9,7 +9,8 @@ import { TransactionModule } from './modules/transaction/transaction.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { LoggerModule } from './common/modules/logger-module/logger.module';
 import { LogsController } from './common/controllers/logs.controller';
-import { PaymentModule } from './modules/payment/payment.module';
+import { ProviderModule } from './modules/provider/provider.module';
+import { PlumModule } from './modules/payment/plum-payment/plum.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PaymentModule } from './modules/payment/payment.module';
     }),
     DatabaseModule,
     LoggerModule,
-    PaymentModule,
+    ProviderModule,
+    PlumModule,
     TransactionModule,
     UserModule,
     AuthModule,

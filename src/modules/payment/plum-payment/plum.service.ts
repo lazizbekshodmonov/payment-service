@@ -13,7 +13,7 @@ import { PaymentPartialReverseDto } from './dto/payment-partial-reverse.dto';
 import { PaymentPartialReverseResponseDto } from './dto/payment-partial-reverse-response.dto';
 
 @Injectable()
-export class PlumPaymentService {
+export class PlumService {
   private readonly baseUrl: string;
   constructor(
     private readonly configService: ConfigService,
@@ -46,13 +46,21 @@ export class PlumPaymentService {
 
   async paymentReverse(dto: PaymentReverseDto) {
     const url = `${this.baseUrl}/Payment/paymentReverse`;
-    const response = await firstValueFrom(this.httpService.post<ConfirmPaymentResponseDto<PaymentReverseResponseDto>, PaymentReverseDto>(url, dto, { headers: { 'Content-Type': 'application/json' } }));
+    const response = await firstValueFrom(
+      this.httpService.post<ConfirmPaymentResponseDto<PaymentReverseResponseDto>, PaymentReverseDto>(url, dto, {
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    );
     return response.data;
   }
 
   async reversePartial(dto: PaymentPartialReverseDto) {
     const url = `${this.baseUrl}/Payment/reversePartial`;
-    const response = await firstValueFrom(this.httpService.post<ConfirmPaymentResponseDto<PaymentPartialReverseResponseDto>, PaymentPartialReverseDto>(url, dto, { headers: { 'Content-Type': 'application/json' } }));
+    const response = await firstValueFrom(
+      this.httpService.post<ConfirmPaymentResponseDto<PaymentPartialReverseResponseDto>, PaymentPartialReverseDto>(url, dto, {
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    );
     return response.data;
   }
 }
