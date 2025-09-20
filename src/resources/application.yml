@@ -15,6 +15,9 @@ database:
     password: "{POSTGRES_PASSWORD}"
     name: "{POSTGRES_DB}"
 
+file:
+  upload_path: 'uploads'
+
 security:
   jwt:
     jwt_secret: "{JWT_SECRET}"

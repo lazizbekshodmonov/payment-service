@@ -1,5 +1,5 @@
-import { IsBoolean, IsEnum, IsOptional, IsString, MaxLength } from 'class-validator';
-import { PaymentProvider } from '../provider.enum';
+import { IsEnum, IsOptional, IsString, MaxLength } from 'class-validator';
+import { ProviderType } from '../provider.enum';
 
 export class CreateProviderDto {
   @IsString()
@@ -9,13 +9,6 @@ export class CreateProviderDto {
   @IsOptional()
   logoHashId?: string;
 
-  @IsEnum(PaymentProvider)
-  providerType: PaymentProvider;
-
-  @IsBoolean()
-  @IsOptional()
-  hasTestMode?: boolean;
-
-  @IsOptional()
-  config?: any;
+  @IsEnum(ProviderType)
+  providerType: ProviderType;
 }

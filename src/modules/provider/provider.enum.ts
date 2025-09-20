@@ -1,4 +1,4 @@
-export enum PaymentProvider {
+export enum ProviderType {
   PLUM = 'PLUM',
   CLICK = 'CLICK',
   PAYME = 'PAYME',

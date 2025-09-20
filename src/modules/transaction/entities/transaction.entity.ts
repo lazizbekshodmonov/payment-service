@@ -2,7 +2,7 @@ import { Entity, Column, Unique, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { TransactionStatus } from '../transaction.enum';
 import { UserEntity } from '../../user/entities/user.entity';
-import { PaymentProvider } from '../../provider/provider.enum';
+import { ProviderType } from '../../provider/provider.enum';
 
 @Entity('transactions')
 @Unique(['provider', 'providerTransactionId'])
@@ -10,9 +10,9 @@ export class TransactionEntity extends BaseEntity {
   @Column({
     name: 'provider',
     type: 'enum',
-    enum: PaymentProvider,
+    enum: ProviderType,
   })
-  provider: PaymentProvider;
+  provider: ProviderType;
 
   @Column({ name: 'provider_transaction_id', type: 'varchar', length: 255 })
   providerTransactionId: string;

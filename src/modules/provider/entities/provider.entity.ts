@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, Unique } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
-import { PaymentProvider } from '../provider.enum';
+import { ProviderType } from '../provider.enum';
 import { FileEntity } from '../../file/entities/file.entity';
 
 @Entity('payment_providers')
@@ -16,10 +16,7 @@ export class ProviderEntity extends BaseEntity {
   @Column({
     name: 'provider_type',
     type: 'enum',
-    enum: PaymentProvider,
+    enum: ProviderType,
   })
-  providerType: PaymentProvider;
-
-  @Column({ name: 'config', type: 'jsonb', nullable: true })
-  config: any;
+  providerType: ProviderType;
 }

@@ -9,7 +9,6 @@ export class ProviderMapper {
     provider.name = dto.name;
     provider.providerType = dto.providerType;
     provider.logo = logo ?? null;
-    provider.config = dto.config;
     return provider;
   }
   static fromUpdateDto(entity: ProviderEntity, dto: UpdateProviderDto, logo?: FileEntity): ProviderEntity {
@@ -17,7 +16,6 @@ export class ProviderMapper {
     provider.name = dto.name ?? entity.name;
     provider.providerType = dto.providerType ?? entity?.providerType;
     provider.logo = logo ?? entity.logo;
-    provider.config = dto.config ?? entity.logo;
     return provider;
   }
 }

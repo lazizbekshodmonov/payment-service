@@ -1,18 +1,18 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { ProviderEntity } from './entities/provider.entity';
 import { CreateProviderDto } from './dtos/create-provider.dto';
 import { UpdateProviderDto } from './dtos/update-provider.dto';
 import { ProviderMapper } from './provider.mapper';
 import { FileEntity } from '../file/entities/file.entity';
 import { FileService } from '../file/file.service';
+import { ProviderResponseDto } from './dtos/provider-response.dto';
+import { ProviderRepository } from './repositories/provider.repository';
 
 @Injectable()
 export class ProviderService {
   constructor(
-    @InjectRepository(ProviderEntity)
-    private readonly providerRepository: Repository<ProviderEntity>,
+    private readonly providerRepository: ProviderRepository,
     private readonly fileService: FileService,
   ) {}
 
@@ -32,36 +32,45 @@ export class ProviderService {
     await this.providerRepository.save(entity);
   }
 
-  async findAll(): Promise<ProviderEntity[]> {
-    return this.providerRepository.find({
+  async findAll() {
+    const result = await this.providerRepository.find({
       relations: ['logo'],
-      order: { name: 'ASC' },
+      order: { id: 'ASC' },
     });
+
+    return result.map((item) => new ProviderResponseDto(item));
   }
 
-  async findOne(id: string): Promise<ProviderEntity> {
+  async findOne(id: number) {
     const provider = await this.providerRepository.findOne({
       where: { id },
       relations: ['logo'],
     });
 
     if (!provider) throw new NotFoundException(`Provider with id=${id} not found`);
-    return provider;
+    return new ProviderResponseDto(provider);
   }
 
-  async update(id: string, dto: UpdateProviderDto): Promise<ProviderEntity> {
-    const provider = await this.findOne(id);
+  async update(id: number, dto: UpdateProviderDto) {
+    const provider = await this.providerRepository.findOne({ where: { id } });
 
-    Object.assign(provider, {
-      ...dto,
-      logo: dto.logoId ? ({ id: dto.logoId } as any) : provider.logo,
-    });
+    if (!provider) throw new NotFoundException(`Provider with id=${id} not found`);
+    let logo: FileEntity | undefined;
 
-    return this.providerRepository.save(provider);
+    if (dto.logoHashId && dto.logoHashId !== provider.logo?.hashId) {
+      logo = await this.fileService.findByHashId(dto.logoHashId);
+    }
+
+    const entity = ProviderMapper.fromUpdateDto(provider, dto, logo);
+
+    await this.providerRepository.update({ id }, entity);
   }
 
-  async remove(id: string): Promise<void> {
-    const provider = await this.findOne(id);
-    await this.providerRepository.remove(provider);
+  async delete(id: number): Promise<void> {
+    const provider = await this.providerRepository.findOne({ where: { id } });
+
+    if (!provider) throw new NotFoundException(`Provider with id=${id} not found`);
+
+    await this.providerRepository.softDelete({ id });
   }
 }

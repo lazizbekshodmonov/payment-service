@@ -3,7 +3,7 @@ import { FileService } from './file.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import type { Express } from 'express';
 
-@Controller()
+@Controller('file')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 
